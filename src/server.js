@@ -84,7 +84,7 @@ const { puerto, CLUSTER } = argumentosEntrada;
 
 if(CLUSTER.toLowerCase() === 'on'){
   // modo cluster
-  const server = app.listen(puerto, () => {
+  const server = app.listen(process.env.PORT || puerto, () => {
     console.log(`Servidor escuchando en el puerto ${server.address().port} modo CLUSTER`)
   })
   server.on('error', error => console.log(`Error en servidor ${error}`))
@@ -114,7 +114,7 @@ if(CLUSTER.toLowerCase() === 'on'){
 
     } else {
 
-      const server = app.listen(puerto, () => {
+      const server = app.listen(process.env.PORT || puerto, () => {
         console.log(`Servidor escuchando en el puerto ${server.address().port} - PID WORKER ${process.pid}`)
       })
       server.on('error', error => console.log(`Error en servidor ${error}`))
